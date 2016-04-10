@@ -1,2 +1,5 @@
-こんにちは。
-アプリをつくります。
+Hello!
+
+Let's develop application!!
+
+ENJOY!!!
