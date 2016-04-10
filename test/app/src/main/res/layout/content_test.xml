@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,8 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.denjo.test.test"
-    tools:showIn="@layout/activity_test"
-    android:clickable="false">
+    >
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,8 +16,28 @@
         android:text="@string/HelloWorld"
         android:id="@+id/textView"
         android:textSize="50sp"
+        android:layout_marginTop="83dp"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tutorial"
+        android:layout_marginTop="141dp"
+        android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="139dp" />
+        android:nestedScrollingEnabled="false"
+        android:onClick="moveTutorial"
+        android:id="@+id/button" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button2"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
