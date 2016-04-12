@@ -17,4 +17,9 @@ public class test extends AppCompatActivity {
         Intent intent = new Intent(this, tutorial1.class);
         startActivity(intent);
     }
+
+    public void moveStart(View view) {
+        Intent intent = new Intent(this, preStart.class);
+        startActivity(intent);
+    }
 }
