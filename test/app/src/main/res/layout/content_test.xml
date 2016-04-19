@@ -11,34 +11,35 @@
     >
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/HelloWorld"
+        android:text="顔が似ている芸能人を探す"
         android:id="@+id/textView"
-        android:textSize="50sp"
+        android:textSize="60sp"
         android:layout_marginTop="92dp"
         android:layout_alignParentTop="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="せつめい"
+        android:nestedScrollingEnabled="false"
+        android:onClick="moveTutorial"
+        android:id="@+id/button"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tutorial"
-        android:nestedScrollingEnabled="false"
-        android:onClick="moveTutorial"
-        android:id="@+id/button"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start"
+        android:text="はじめる"
         android:id="@+id/button2"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="67dp"
+        android:onClick="moveStart"
         android:layout_below="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:onClick="moveStart"/>
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

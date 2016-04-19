@@ -29,7 +29,6 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".waiting" />
         <activity android:name=".option_select" />
         <activity android:name=".job"></activity>
     </application>
