@@ -6,7 +6,5 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.example.denjo.test.preStart">
-
     <include layout="@layout/content_pre_start" />
-
 </android.support.design.widget.CoordinatorLayout>
