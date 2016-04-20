@@ -9,51 +9,60 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.denjo.test.tutorial1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="96dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="42dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Page2"
-        android:id="@+id/textView4"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:text="つぎへ"
         android:id="@+id/button3"
-        android:layout_marginBottom="65dp"
+        android:onClick="moveThird"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/textView2"
-        android:onClick="moveThird" />
+        android:layout_alignParentEnd="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="back"
+        android:text="もどる"
         android:id="@+id/button4"
-        android:layout_alignTop="@+id/button3"
-        android:layout_toStartOf="@+id/textView4"
-        android:onClick="moveFirst" />
+        android:onClick="moveFirst"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="チュートリアル"
+        android:id="@+id/textView10"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="　人の写真を撮ると、顔が似ている有名人を表示します。"
+        android:id="@+id/textView11"
+        android:layout_below="@+id/textView10"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="73dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sample_model"
+        android:scaleType="centerInside"
+        android:id="@+id/imageView4"
+        android:layout_alignTop="@+id/imageView3"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/textView10" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sample_tennis"
+        android:id="@+id/imageView3"
+        android:scaleType="centerInside"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/textView10" />
+
 </RelativeLayout>
