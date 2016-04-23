@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.denjo.test.utils.AsyncHttpRequest;
+
 public class preStart extends AppCompatActivity {
     ImageView imageView;
 
@@ -16,6 +18,8 @@ public class preStart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_start);
         imageView = (ImageView) findViewById(R.id.imageView);
+        AsyncHttpRequest asyncHttpRequest = new AsyncHttpRequest(this); //TODO 変数名ahrだとパット見何指してるか分からないのでこれ推奨
+        asyncHttpRequest.execute();
     }
 
     public void onClickCameraButton(View view) {
