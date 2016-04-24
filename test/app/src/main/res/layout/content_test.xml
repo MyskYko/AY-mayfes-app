@@ -29,17 +29,25 @@
         android:nestedScrollingEnabled="false"
         android:onClick="moveTutorial"
         android:id="@+id/button"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/button2" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="はじめる"
         android:id="@+id/button2"
-        android:layout_marginTop="67dp"
         android:onClick="moveStart"
         android:layout_below="@+id/button"
+        android:layout_alignStart="@+id/button3" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="もっと"
+        android:id="@+id/button3"
+        android:onClick="moveChoice"
+        android:layout_below="@+id/button2"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
