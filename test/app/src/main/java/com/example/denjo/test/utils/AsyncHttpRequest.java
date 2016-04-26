@@ -22,7 +22,7 @@ import java.net.URL;
 
 public class AsyncHttpRequest extends AsyncTask<String, String, String> {
     private String attachmentName = "bitmap";
-    private String attachmentFileName = "bitmap.png";
+    private String attachmentFileName = "bitmap.bmp";
     private String crlf = "\r\n";
     private String twoHyphens = "--";
     private String boudary = "testestest";
@@ -35,6 +35,7 @@ public class AsyncHttpRequest extends AsyncTask<String, String, String> {
         super();
         this.context = context;
         res = context.getResources();
+
     }
     
     @Override
@@ -44,7 +45,7 @@ public class AsyncHttpRequest extends AsyncTask<String, String, String> {
         try {
             // Setup the request;
             HttpURLConnection httpUrlConnection = null;
-            URL url = new URL("http://52.27.116.147/result");
+            URL url = new URL("http://52.27.3.192/result");
             // URL url = new URL("http://api.imgur.com");
             httpUrlConnection = (HttpURLConnection) url.openConnection();
             httpUrlConnection.setUseCaches(false);
