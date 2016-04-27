@@ -82,7 +82,7 @@ public class HttpRequest extends Fragment {
         }
 
         HttpConnector.RequestInfo requestInfo = new HttpConnector.RequestInfo();
-        requestInfo.url = "http://114.51.48.10/result";
+        requestInfo.url = "http://writedownurlhere";
         requestInfo.params.add(new HttpConnector.Param(HttpConnector.Param.TYPE_STRING, "key_param1", "value_param1"));
         requestInfo.params.add(new HttpConnector.Param(HttpConnector.Param.TYPE_STRING, "key_param2", "value_param2"));
         requestInfo.asyncCallBack = new AsyncCallback() {

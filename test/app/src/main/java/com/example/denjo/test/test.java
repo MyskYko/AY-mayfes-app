@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.example.denjo.test.utils.HttpConnector;
+import com.example.denjo.test.utils.HttpRequest;
+
 public class test extends AppCompatActivity {
 
     @Override

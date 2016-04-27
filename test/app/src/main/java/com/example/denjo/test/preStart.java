@@ -23,7 +23,6 @@ public class preStart extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.imageView);
 
         HttpRequest httpRequest = new HttpRequest();
-
     }
 
     public void onClickCameraButton(View view) {

@@ -2,11 +2,16 @@ package com.example.denjo.test.utils;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Environment;
+
+import com.example.denjo.test.R;
 
 import org.apache.http.Consts;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
@@ -18,6 +23,7 @@ import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.File;
@@ -85,8 +91,11 @@ public class HttpConnector {
         private AsyncCallback asyncCallback = null;
         private ProgressDialog progressDialog;
 
+        private Resources res;
+
         public AsyncHttpRequest(Context context){
             this.context = context;
+            res = context.getResources();
         }
 
         @Override
@@ -110,9 +119,11 @@ public class HttpConnector {
             HttpUriRequest request = null;
             if(this.params != null && this.params.size() > 0){
                 HttpPost post = new HttpPost(uri);
+
                 MultipartEntityBuilder entity = MultipartEntityBuilder.create();
                 entity.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
                 entity.setCharset(Consts.UTF_8);
+
                 for(Param p:this.params){
                     switch (p.type){
                         case Param.TYPE_STRING:
@@ -125,7 +136,16 @@ public class HttpConnector {
                             break;
                     }
                 }
+
                 post.setEntity(entity.build());
+
+                File file = new File("app/res/drawable/sayane.jpg");
+                FileBody bin = new FileBody(file);
+                entity.addPart("filedata", bin);
+
+                HttpEntity postEntity = entity.build();
+                post.setEntity(postEntity);
+
                 request = post;
             }
 
