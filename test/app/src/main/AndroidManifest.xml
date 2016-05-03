@@ -43,8 +43,10 @@
         <activity
             android:name=".genre_choice"
             android:screenOrientation="portrait" />
-        <activity android:name=".more" />
-        <activity android:name=".jenderChoice"></activity>
+        <activity android:name=".more"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".jenderChoice"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
