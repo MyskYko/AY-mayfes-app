@@ -9,4 +9,31 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.denjo.test.jenderChoice">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="男性/女性の芸能人で、最も類似度が高い人を表示します。"
+        android:id="@+id/textView4"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="94dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="男性"
+        android:id="@+id/button11"
+        android:layout_marginTop="162dp"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="69dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="女性"
+        android:id="@+id/button12"
+        android:layout_marginEnd="84dp"
+        android:layout_alignTop="@+id/button11"
+        android:layout_alignEnd="@+id/textView4" />
 </RelativeLayout>
