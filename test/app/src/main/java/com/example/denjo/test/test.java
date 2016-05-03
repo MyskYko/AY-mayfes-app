@@ -22,8 +22,8 @@ public class test extends AppCompatActivity {
         Intent intent = new Intent(this, preStart.class);
         startActivity(intent);
     }
-    public void moveChoice(View view) {
-        Intent intent = new Intent(this, genre_choice.class);
+    public void moveMore(View view) {
+        Intent intent = new Intent(this, more.class);
         startActivity(intent);
     }
 }

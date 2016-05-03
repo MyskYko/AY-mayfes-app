@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:text="もっと"
         android:id="@+id/button3"
-        android:onClick="moveChoice"
+        android:onClick="moveMore"
         android:layout_below="@+id/button2"
         android:layout_centerHorizontal="true" />
 

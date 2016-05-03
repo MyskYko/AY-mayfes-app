@@ -21,24 +21,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".tutorial1"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".tutorial1"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".preStart"
             android:label="@string/title_activity_pre_start"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".option_select"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".job"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".genre_choice"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".option_select"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".job"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".genre_choice"
+            android:screenOrientation="portrait" />
+        <activity android:name=".more" />
+        <activity android:name=".jenderChoice"></activity>
     </application>
 
 </manifest>
