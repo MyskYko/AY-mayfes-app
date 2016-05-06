@@ -56,7 +56,9 @@ public class preStart extends AppCompatActivity {
     }
 
     private void postImage(){
+
         ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
         if(!HttpConnector.isConnected(connectivityManager)){
             new AlertDialog.Builder(this)
                     .setMessage("インターネット接続できません")
@@ -66,9 +68,14 @@ public class preStart extends AppCompatActivity {
         }
 
         HttpConnector.RequestInfo requestInfo = new HttpConnector.RequestInfo();
-        requestInfo.url = "http://writedownurlhere";
-        requestInfo.params.add(new HttpConnector.Param(HttpConnector.Param.TYPE_STRING, "key_param1", "value_param1"));
-        requestInfo.params.add(new HttpConnector.Param(HttpConnector.Param.TYPE_STRING, "key_param2", "value_param2"));
+
+        requestInfo.url = "http://52.33.86.75/result";
+        //requestInfo.url = "http://localhost:8000";
+
+        System.out.println("try access to: " + requestInfo.url);
+
+        requestInfo.params.add(new HttpConnector.Param(HttpConnector.Param.TYPE_IMAGE, "key1", "value1"));
+        //requestInfo.params.add(new HttpConnector.Param(HttpConnector.Param.TYPE_STRING, "key_param2", "value_param2"));
         requestInfo.asyncCallBack = new AsyncCallback() {
             @Override
             public void onPostExecute(InputStream responseIS) {

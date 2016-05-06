@@ -3,10 +3,14 @@ package com.example.denjo.test.utils;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.provider.ContactsContract;
 
 import com.example.denjo.test.R;
 
@@ -25,7 +29,9 @@ import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -118,6 +124,7 @@ public class HttpConnector {
 
             HttpUriRequest request = null;
             if(this.params != null && this.params.size() > 0){
+
                 HttpPost post = new HttpPost(uri);
 
                 MultipartEntityBuilder entity = MultipartEntityBuilder.create();
@@ -131,21 +138,22 @@ public class HttpConnector {
                             entity.addTextBody(p.key, p.value, textContentType);
                             break;
                         case Param.TYPE_IMAGE:
-                            ContentType imageContentType = ContentType.create("image/jpg");
-                            entity.addBinaryBody("image", new File(p.value), imageContentType, p.value);
+
+                            Drawable drawable = res.getDrawable(R.drawable.sayane);
+                           if(drawable != null) {
+                               Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+                               ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                               bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                               final byte[] bitmapdata = stream.toByteArray();
+
+                               ContentType imageContentType = ContentType.create("image/jpeg");
+                               entity.addBinaryBody("upfile", bitmapdata, imageContentType, "sayane.jpg");
+                               //entity.addBinaryBody("image", new File(p.value), imageContentType, p.value);
+                           }
                             break;
                     }
                 }
-
                 post.setEntity(entity.build());
-
-                File file = new File("app/res/drawable/sayane.jpg");
-                FileBody bin = new FileBody(file);
-                entity.addPart("filedata", bin);
-
-                HttpEntity postEntity = entity.build();
-                post.setEntity(postEntity);
-
                 request = post;
             }
 
@@ -154,6 +162,8 @@ public class HttpConnector {
                 httpClient.execute(request, new ResponseHandler<InputStream>() {
                     @Override
                     public InputStream handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
+                        System.out.print("HTTP Status Code:");
+                        System.out.println(response.getStatusLine().getStatusCode());
                         switch (response.getStatusLine().getStatusCode()){
                             case HttpStatus.SC_OK:
                                 return new BufferedHttpEntity(response.getEntity()).getContent();
