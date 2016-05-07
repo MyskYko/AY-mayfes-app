@@ -68,7 +68,7 @@ public class preStart extends AppCompatActivity {
 
         HttpConnector.RequestInfo requestInfo = new HttpConnector.RequestInfo();
 
-        requestInfo.url = "http://52.32.34.90/result";
+        requestInfo.url = "http://52.193.222.201/result";
         //requestInfo.url = "http://localhost:8000";
 
         System.out.println("try access to: " + requestInfo.url);

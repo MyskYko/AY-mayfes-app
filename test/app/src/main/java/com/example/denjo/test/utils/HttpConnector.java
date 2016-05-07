@@ -31,10 +31,12 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -166,7 +168,25 @@ public class HttpConnector {
                         System.out.println(response.getStatusLine().getStatusCode());
                         switch (response.getStatusLine().getStatusCode()){
                             case HttpStatus.SC_OK:
-                                return new BufferedHttpEntity(response.getEntity()).getContent();
+                                if(response.getEntity().getContentLength() > 0){
+                                    StringBuilder stringBuilder = new StringBuilder();
+                                    try{
+                                        BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()), 65728);
+                                        String line = null;
+
+                                        while((line = reader.readLine()) != null){
+                                            stringBuilder.append(line);
+                                        }
+                                    } catch (IOException e){
+                                        e.printStackTrace();
+                                    } catch (Exception e){
+                                        e.printStackTrace();
+                                    }
+
+                                    System.out.println("result: " + stringBuilder.toString());
+                                }
+                                //return new BufferedHttpEntity(response.getEntity()).getContent();
+                                return null;
                             case HttpStatus.SC_NOT_FOUND:
                                 throw new RuntimeException("httpClient.execute SC_NOT_FOUND");
                             default:
@@ -181,6 +201,7 @@ public class HttpConnector {
             } finally {
                 if (httpClient != null){
                     try{
+                        System.out.println();
                         httpClient.getConnectionManager().shutdown();
                     } catch (Exception e){
                         e.printStackTrace();
