@@ -70,10 +70,13 @@ public class HttpConnector {
         private String key;
         private String value;
 
-        public Param(int type, String key, String value){
+        private Bitmap capturedImage;
+
+        public Param(int type, String key, String value, Bitmap capturedImage){
             this.type = type;
             this.key = key;
             this.value = value;
+            this.capturedImage = capturedImage;
         }
     }
 
@@ -139,16 +142,13 @@ public class HttpConnector {
                             break;
                         case Param.TYPE_IMAGE:
 
-                            Drawable drawable = res.getDrawable(R.drawable.sayane);
-                           if(drawable != null) {
-                               Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+                           if(p.capturedImage != null){
                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                               bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                               p.capturedImage.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                                final byte[] bitmapdata = stream.toByteArray();
 
                                ContentType imageContentType = ContentType.create("image/jpeg");
                                entity.addBinaryBody("upfile", bitmapdata, imageContentType, "sayane.jpg");
-                               //entity.addBinaryBody("image", new File(p.value), imageContentType, p.value);
                            }
                             break;
                     }

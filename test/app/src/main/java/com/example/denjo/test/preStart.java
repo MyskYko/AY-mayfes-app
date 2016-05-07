@@ -31,8 +31,6 @@ public class preStart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_start);
         imageView = (ImageView) findViewById(R.id.imageView);
-
-        postImage();
     }
 
     public void onClickCameraButton(View view) {
@@ -46,6 +44,7 @@ public class preStart extends AppCompatActivity {
             // 撮影成功時の処理
             Bitmap capturedImage = (Bitmap) data.getExtras().get("data");
             imageView.setImageBitmap(capturedImage);
+            postImage(capturedImage);
         }
     }
 
@@ -55,7 +54,7 @@ public class preStart extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void postImage(){
+    private void postImage(Bitmap capturedImage){
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -69,12 +68,12 @@ public class preStart extends AppCompatActivity {
 
         HttpConnector.RequestInfo requestInfo = new HttpConnector.RequestInfo();
 
-        requestInfo.url = "http://52.33.86.75/result";
+        requestInfo.url = "http://52.32.34.90/result";
         //requestInfo.url = "http://localhost:8000";
 
         System.out.println("try access to: " + requestInfo.url);
 
-        requestInfo.params.add(new HttpConnector.Param(HttpConnector.Param.TYPE_IMAGE, "key1", "value1"));
+        requestInfo.params.add(new HttpConnector.Param(HttpConnector.Param.TYPE_IMAGE, "key1", "value1", capturedImage));
         //requestInfo.params.add(new HttpConnector.Param(HttpConnector.Param.TYPE_STRING, "key_param2", "value_param2"));
         requestInfo.asyncCallBack = new AsyncCallback() {
             @Override
@@ -108,4 +107,3 @@ public class preStart extends AppCompatActivity {
     }
 
 }
-
