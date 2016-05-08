@@ -23,15 +23,14 @@ public class creatArray extends AppCompatActivity{
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_result);
     //id、名前(説明)が入ったtxtファイルを開き、配列を作成
     fileOpen("sorce.txt");
     for (int i = 0 ; arrayId[i] != 0 ; i++) {
-      if(arrayId[i] == resultId) {
+     // if(arrayId[i] == resultId) {
         determinedId = arrayId[i];
         determinedName = arrayName[i];
         break;
-      }
+    //  }
     }
   }
 

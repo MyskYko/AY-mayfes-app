@@ -31,10 +31,4 @@ public class test extends AppCompatActivity {
         intent.putExtra("resultId", 1002);
         startActivity(intent);
     }
-
-    public void mkArray(View view) {
-        Intent intent = new Intent(this, createArray.class);
-        intent.putExtra("resultId", 1002);
-        startActivity(intent);
-    }
 }
