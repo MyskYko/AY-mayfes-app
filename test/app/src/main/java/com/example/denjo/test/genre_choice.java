@@ -33,6 +33,6 @@ public class genre_choice extends AppCompatActivity {
 
         listView.setAdapter(adapter);
     }
-    private static final String[] GENRE=new String[]{"俳優・女優","アーティスト","芸人"};
+    private static final String[] GENRE=new String[]{"俳優","男性アーティスト","男性芸人","女優","女性アーティスト","女性芸人"};
 
 }
