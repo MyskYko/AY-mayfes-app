@@ -50,4 +50,14 @@
         android:layout_below="@+id/button2"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="id=1002となったとき"
+        android:id="@+id/button13"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="69dp"
+        android:onClick="moveResult" />
+
 </RelativeLayout>
