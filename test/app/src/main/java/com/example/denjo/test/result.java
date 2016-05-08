@@ -1,53 +1,24 @@
 package com.example.denjo.test;
 
-import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 public class result extends AppCompatActivity {
-
+    public int resultId;
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+        //intent経由でidを受け取れる(http://android.roof-balcony.com/intent/putextra/)受け取り失敗時は理由はないが1001にしてある。
+        Intent i = getIntent();
+        resultId = i.getIntExtra("resultId",1001);
+        //imageViewにdrawble内の画像"rxxxx"を表示させる。(xxxx=resultId)
+        ImageView resultImage = (ImageView) findViewById(R.id.imageView5);
+        resultImage.setImageResource(getResources().getIdentifier("r" + resultId, "drawable", getPackageName()));
 
-        FileInputStream fis = null;
-        BufferedReader in = null;
-        String text = "";
-
-        ImageView imageView = (ImageView) findViewById(R.id.imageResult);
-        imageView.setImageResource(R.drawable.text);
-        linerLayout.addView()
-
-        // ファイルの読込
-        try {
-            try {
-                fis = this.openFileInput("test.txt");
-                in = new BufferedReader(new InputStreamReader(fis));
-                String str;
-                while ((str = in.readLine()) != null) {
-                    text = str;
-                }
-            } finally {
-                if (in != null) {
-                    try {
-                        in.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

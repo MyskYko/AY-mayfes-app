@@ -26,4 +26,15 @@ public class test extends AppCompatActivity {
         Intent intent = new Intent(this, more.class);
         startActivity(intent);
     }
+    public void moveResult(View view) {
+        Intent intent = new Intent(this, result.class);
+        intent.putExtra("resultId", 1002);
+        startActivity(intent);
+    }
+
+    public void mkArray(View view) {
+        Intent intent = new Intent(this, createArray.class);
+        intent.putExtra("resultId", 1002);
+        startActivity(intent);
+    }
 }
