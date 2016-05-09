@@ -25,7 +25,8 @@
         android:id="@+id/button11"
         android:layout_centerVertical="true"
         android:layout_toStartOf="@+id/button12"
-        android:layout_marginEnd="58dp" />
+        android:layout_marginEnd="58dp"
+        android:onClick="men" />
 
     <Button
         android:layout_width="wrap_content"
@@ -34,5 +35,6 @@
         android:id="@+id/button12"
         android:layout_marginEnd="60dp"
         android:layout_alignTop="@+id/button11"
-        android:layout_alignEnd="@+id/textView4" />
+        android:layout_alignEnd="@+id/textView4"
+        android:onClick="women" />
 </RelativeLayout>

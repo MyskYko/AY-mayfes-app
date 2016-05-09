@@ -10,20 +10,39 @@
     tools:context="com.example.denjo.test.result">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/imageView5"
         android:contentDescription=""
         android:layout_toEndOf="@+id/textView12"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView12" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/textView12"
+        android:layout_marginBottom="61dp"
+        android:layout_above="@+id/button14"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="おまけ"
+        android:id="@+id/button14"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="moveOption" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="おわる"
+        android:id="@+id/button15"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:onClick="moveTitle" />
 
 </RelativeLayout>

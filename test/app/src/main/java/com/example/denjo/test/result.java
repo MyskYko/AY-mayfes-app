@@ -4,6 +4,7 @@ package com.example.denjo.test;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,8 +41,6 @@ public class result extends AppCompatActivity {
         ImageView resultImage = (ImageView) findViewById(R.id.imageView5);
         resultImage.setImageResource(getResources().getIdentifier("r" + resultId[category], "drawable", getPackageName()));
     }
-
-
     public String getName(String filename) {
         //1行ずつ読み込み
         String str = null;
@@ -72,4 +71,15 @@ public class result extends AppCompatActivity {
         return str;
     }
 
+    public void moveTitle(View view) {
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
+        finish();
+    }
+    public void moveOption(View view) {
+        Intent intent = new Intent(this, more.class);
+        intent.putExtra("resultId", resultId);
+        startActivity(intent);
+        finish();
+    }
 }

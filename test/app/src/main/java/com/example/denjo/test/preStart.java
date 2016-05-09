@@ -43,7 +43,7 @@ public class preStart extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             // 撮影成功時の処理
             Bitmap capturedImage = (Bitmap) data.getExtras().get("data");
-            imageView.setImageBitmap(capturedImage);
+            //imageView.setImageBitmap(capturedImage);
             int[] id = postImage(capturedImage);
             // idが0(計算失敗) -> 再度撮影
             if(id[0] == 0 || id == null){
@@ -52,7 +52,7 @@ public class preStart extends AppCompatActivity {
             }
             /* 結果画像を表示するActivityへ */
             Intent intent = new Intent(this, result.class);
-            intent.putExtra("ID", id);
+            intent.putExtra("resultId", id);
             startActivity(intent);
         }else{
             //　撮影ミスのとき
