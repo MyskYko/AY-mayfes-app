@@ -50,25 +50,23 @@ public class preStart extends AppCompatActivity {
                 //
                 return;
             }
-            /* 結果画像を表示するActivityへ
-            Intent intent = new Intent(this, ***.class);
+            /* 結果画像を表示するActivityへ */
+            Intent intent = new Intent(this, result.class);
             intent.putExtra("ID", id);
             startActivity(intent);
-            */
         }else{
             //　撮影ミスのとき
         }
     }
 
     public void move(View view) {
-        Intent intent = new Intent(this, test.class);
+        Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 
     private int[] postImage(Bitmap capturedImage){
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-
         if(!HttpConnector.isConnected(connectivityManager)){
             new AlertDialog.Builder(this)
                     .setMessage("インターネット接続できません")

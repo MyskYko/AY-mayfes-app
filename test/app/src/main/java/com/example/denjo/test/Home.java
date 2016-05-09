@@ -5,11 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-<<<<<<< HEAD:test/app/src/main/java/com/example/denjo/test/Home.java
 public class Home extends AppCompatActivity {
-=======
-
->>>>>>> feature/http_request2:test/app/src/main/java/com/example/denjo/test/test.java
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
