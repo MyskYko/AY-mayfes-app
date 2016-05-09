@@ -37,7 +37,6 @@ public class result extends AppCompatActivity {
 
 
     public String getName(String filename) {
-        int counter = 0;
         //1行ずつ読み込み
         try {
             File file = new File(filename);
@@ -59,11 +58,8 @@ public class result extends AppCompatActivity {
                     if(tmpid == resultId){
                         return result[1];
                     }
-                    counter++;
                 }
                 br.close();
-            } else {
-                System.out.println("?");
             }
         } catch (FileNotFoundException e) {
             System.out.println(e);

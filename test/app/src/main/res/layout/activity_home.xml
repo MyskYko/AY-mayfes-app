@@ -7,6 +7,6 @@
     tools:context="com.example.denjo.test.test">
 
 
-    <include layout="@layout/content_test" />
+    <include layout="@layout/content_home" />
 
 </android.support.design.widget.CoordinatorLayout>
