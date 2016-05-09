@@ -11,6 +11,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.ContactsContract;
+import android.renderscript.ScriptGroup;
 
 import com.example.denjo.test.R;
 
@@ -31,6 +32,7 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -41,12 +43,46 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * Created by denjo on 2016/04/27.
  */
 
 public class HttpConnector {
+
+    /* serverからの返却 */
+    private static InputStream returnedEntity = null;
+
+    public static int[] getReturnedId(){
+        if(returnedEntity != null){
+            StringBuilder stringBuilder = new StringBuilder();
+            try{
+                BufferedReader reader = new BufferedReader(new InputStreamReader(returnedEntity), 65728);
+                String line = null;
+
+                while((line = reader.readLine()) != null){
+                    stringBuilder.append(line);
+                }
+            } catch (IOException e){
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println("result: " + stringBuilder.toString());
+
+            // 要素数チェック
+            int[] id = new int[11];
+            int it = 0;
+            StringTokenizer stringTokenizer = new StringTokenizer(stringBuilder.toString(), ",");
+            while(stringTokenizer.hasMoreTokens()){
+                id[it] = new Integer(stringTokenizer.nextToken()).intValue();
+            }
+            return id;
+        }
+        return null;
+    }
+
     /* ネットワーク接続有無 */
     public static boolean isConnected(ConnectivityManager manager){
         NetworkInfo info = manager.getActiveNetworkInfo();
@@ -83,7 +119,7 @@ public class HttpConnector {
     }
 
     /* リクエスト呼び出しクラス */
-    public static void Request(Context context, RequestInfo requestInfo){
+    public static  void Request(Context context, RequestInfo requestInfo){
         AsyncHttpRequest asyncHttpRequest = new AsyncHttpRequest(context);
         asyncHttpRequest.url = requestInfo.url;
         if(requestInfo.url != null){
@@ -168,6 +204,7 @@ public class HttpConnector {
                         System.out.println(response.getStatusLine().getStatusCode());
                         switch (response.getStatusLine().getStatusCode()){
                             case HttpStatus.SC_OK:
+                                /*
                                 if(response.getEntity().getContentLength() > 0){
                                     StringBuilder stringBuilder = new StringBuilder();
                                     try{
@@ -179,14 +216,16 @@ public class HttpConnector {
                                         }
                                     } catch (IOException e){
                                         e.printStackTrace();
-                                    } catch (Exception e){
+                                    } catch (Exception e) {
                                         e.printStackTrace();
                                     }
-
                                     System.out.println("result: " + stringBuilder.toString());
                                 }
+                                */
                                 //return new BufferedHttpEntity(response.getEntity()).getContent();
-                                return null;
+                                if(response.getEntity().getContentLength() > 0) {
+                                    returnedEntity = new BufferedHttpEntity(response.getEntity()).getContent();
+                                }
                             case HttpStatus.SC_NOT_FOUND:
                                 throw new RuntimeException("httpClient.execute SC_NOT_FOUND");
                             default:
@@ -201,14 +240,12 @@ public class HttpConnector {
             } finally {
                 if (httpClient != null){
                     try{
-                        System.out.println();
                         httpClient.getConnectionManager().shutdown();
                     } catch (Exception e){
                         e.printStackTrace();
                     }
                 }
             }
-
             return null;
         }
 

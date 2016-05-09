@@ -44,17 +44,28 @@ public class preStart extends AppCompatActivity {
             // 撮影成功時の処理
             Bitmap capturedImage = (Bitmap) data.getExtras().get("data");
             imageView.setImageBitmap(capturedImage);
-            postImage(capturedImage);
+            int[] id = postImage(capturedImage);
+            // idが0(計算失敗) -> 再度撮影
+            if(id[0] == 0 || id == null){
+                //
+                return;
+            }
+            /* 結果画像を表示するActivityへ
+            Intent intent = new Intent(this, ***.class);
+            intent.putExtra("ID", id);
+            startActivity(intent);
+            */
+        }else{
+            //　撮影ミスのとき
         }
     }
-
 
     public void move(View view) {
         Intent intent = new Intent(this, test.class);
         startActivity(intent);
     }
 
-    private void postImage(Bitmap capturedImage){
+    private int[] postImage(Bitmap capturedImage){
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -63,18 +74,16 @@ public class preStart extends AppCompatActivity {
                     .setMessage("インターネット接続できません")
                     .setPositiveButton("OK", null)
                     .show();
-            return;
+            return null;
         }
 
         HttpConnector.RequestInfo requestInfo = new HttpConnector.RequestInfo();
 
-        requestInfo.url = "http://52.193.222.201/result";
-        //requestInfo.url = "http://localhost:8000";
-
+        requestInfo.url = "http://yahoo.co.jp";
+        //requestInfo.url = "http://52.193.222.201/result";
         System.out.println("try access to: " + requestInfo.url);
 
         requestInfo.params.add(new HttpConnector.Param(HttpConnector.Param.TYPE_IMAGE, "key1", "value1", capturedImage));
-        //requestInfo.params.add(new HttpConnector.Param(HttpConnector.Param.TYPE_STRING, "key_param2", "value_param2"));
         requestInfo.asyncCallBack = new AsyncCallback() {
             @Override
             public void onPostExecute(InputStream responseIS) {
@@ -104,6 +113,6 @@ public class preStart extends AppCompatActivity {
             }
         };
         HttpConnector.Request(this, requestInfo);
+        return HttpConnector.getReturnedId();
     }
-
 }
