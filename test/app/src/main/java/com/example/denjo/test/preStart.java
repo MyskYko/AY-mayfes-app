@@ -34,7 +34,7 @@ public class preStart extends AppCompatActivity {
 
 
     public void move(View view) {
-        Intent intent = new Intent(this, test.class);
+        Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 }

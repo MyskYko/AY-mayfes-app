@@ -12,69 +12,64 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class result extends AppCompatActivity {
-    public int resultId;
-    public String resultName;
+    int resultId[];
+    int category;
+    String resultName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        //intent経由でidを受け取れる(http://android.roof-balcony.com/intent/putextra/)受け取り失敗時は理由はないが1001にしてある。
+        //intent経由でidを受け取れる(http://android.roof-balcony.com/intent/putextra/)
         Intent i = getIntent();
-        resultId = i.getIntExtra("resultId", 1001);
+        resultId = i.getIntArrayExtra("resultId");
+        //カテゴリ選択をうけとる。とくになければ0（全体)になる。
+        category = i.getIntExtra("category",0);
         //getName
         resultName = getName("sorce.txt");
         if(resultName != null) {
             TextView resultText = (TextView) findViewById(R.id.textView12);
             resultText.setText(resultName);
         }
-        //imageViewにdrawble内の画像"rxxxx"を表示させる。(xxxx=resultId)
+        //imageViewにdrawble内の画像"rxxxx"を表示させる。(xxxx=resultId[category])
         ImageView resultImage = (ImageView) findViewById(R.id.imageView5);
-        resultImage.setImageResource(getResources().getIdentifier("r" + resultId, "drawable", getPackageName()));
+        resultImage.setImageResource(getResources().getIdentifier("r" + resultId[category], "drawable", getPackageName()));
     }
 
 
     public String getName(String filename) {
         //1行ずつ読み込み
+        String str = null;
+        InputStream is = null;
         try {
-            File file = new File(filename);
-
-            if (checkBeforeReadfile(file)) {
-                BufferedReader br
-                        = new BufferedReader(new FileReader(file));
-
-                String str;
+            is = this.getAssets().open(filename);
+            if (is != null) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 while ((str = br.readLine()) != null) {
                     //トークン分解
-                    Pattern p = Pattern.compile("[�@|\\s]+");
-                    String[] result = p.split(str);
+                    String[] result = str.split("\t", 0);
                     if (result.length != 2) {
                         System.out.println("different number of token");
                     }
-                    //idがresuluIdと一致したとき説明を返す。
-                    int tmpid = Integer.parseInt(result[0]);
-                    if(tmpid == resultId){
-                        return result[1];
+                    //idがresultId[category]と一致したとき説明を返す。
+                    int tmpId = Integer.parseInt(result[0]);
+                    if (tmpId == resultId[category]) {
+                        str = result[1];
+                        break;
                     }
                 }
                 br.close();
             }
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
+            is.close();
         } catch (IOException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
-        return null;
+        return str;
     }
 
-    private static boolean checkBeforeReadfile(File file) {
-        if (file.exists()) {
-            if (file.isFile() && file.canRead()) {
-                return true;
-            }
-        }
-        return false;
-    }
 }
