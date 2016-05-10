@@ -9,32 +9,45 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.denjo.test.jenderChoice">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="男性/女性の芸能人で、最も類似度が高い人を表示します。"
-        android:id="@+id/textView4"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="94dp" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="男性"
         android:id="@+id/button11"
-        android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/button12"
-        android:layout_marginEnd="58dp"
-        android:onClick="men" />
+        android:onClick="men"
+        android:layout_marginBottom="152dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="女性"
         android:id="@+id/button12"
-        android:layout_marginEnd="60dp"
+        android:onClick="women"
         android:layout_alignTop="@+id/button11"
-        android:layout_alignEnd="@+id/textView4"
-        android:onClick="women" />
+        android:layout_alignParentEnd="true" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/button11"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/c_man"
+            android:layout_weight="1"
+            android:id="@+id/imageView12" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/r2045"
+            android:layout_weight="1"
+            android:id="@+id/imageView13" />
+    </LinearLayout>
 </RelativeLayout>

@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="顔が似ている芸能人を探す"
+        android:text="顔が似ている芸能人を探す(仮)"
         android:id="@+id/textView"
         android:textSize="60sp"
         android:layout_gravity="center"
@@ -29,7 +29,7 @@
         android:nestedScrollingEnabled="false"
         android:onClick="moveTutorial"
         android:id="@+id/button"
-        android:layout_below="@+id/textView"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
     <Button

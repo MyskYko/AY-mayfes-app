@@ -12,11 +12,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="はじめる"
+        android:text="つぎへ"
         android:id="@+id/button3"
-        android:onClick="finishTutorial"
+        android:onClick="moveFourth"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/textView3" />
+        android:layout_alignParentEnd="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -41,9 +41,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="　似ている人を絞ることができるようにいろいろ条件を用意しました。男女別でわけてあるので、違う性別の人で誰に似ているかを調べてみるたりすると楽しいと思います。"
+        android:text="　検索範囲を絞ることができるようにしました。男女別、職業別の似ている有名人を調べられます。"
         android:id="@+id/textView3"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="80dp"
         android:layout_below="@+id/textView2"
         android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/imageView7"
+        android:scaleType="centerInside"
+        android:src="@drawable/t_boygirl"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageView8"
+        android:src="@drawable/t_actor"
+        android:layout_below="@+id/imageView10"
+        android:layout_toEndOf="@+id/imageView9" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageView9"
+        android:src="@drawable/t_artist"
+        android:layout_below="@+id/imageView8"
+        android:layout_alignEnd="@+id/textView2" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageView10"
+        android:src="@drawable/t_showman"
+        android:layout_alignTop="@+id/imageView7"
+        android:layout_toStartOf="@+id/imageView8" />
+
 </RelativeLayout>

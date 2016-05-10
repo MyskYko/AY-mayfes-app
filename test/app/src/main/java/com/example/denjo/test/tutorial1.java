@@ -21,6 +21,9 @@ public class tutorial1 extends AppCompatActivity {
     public void moveThird(View view) {
         setContentView(R.layout.activity_tutorial3);
     }
+    public void moveFourth(View view) {
+        setContentView(R.layout.activity_tutorial4);
+    }
     public void finishTutorial(View view) {
         Intent intent = new Intent(this, preStart.class);
         startActivity(intent);

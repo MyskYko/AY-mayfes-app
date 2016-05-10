@@ -8,8 +8,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="処理に失敗しました"
         android:id="@+id/textView13"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/imageView11"
+        android:layout_alignStart="@+id/imageView11" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,8 +25,15 @@
         android:layout_height="wrap_content"
         android:text="もどる"
         android:id="@+id/button7"
-        android:layout_marginBottom="48dp"
+        android:onClick="move"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="move" />
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/imageView11"
+        android:src="@drawable/t_miss"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

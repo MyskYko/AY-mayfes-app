@@ -12,19 +12,19 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="つぎへ"
+        android:text="はじめる"
         android:id="@+id/button3"
-        android:onClick="moveSecond"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:onClick="finishTutorial"
+        android:layout_alignTop="@+id/button4"
+        android:layout_alignEnd="@+id/textView15" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="やめる"
+        android:text="もどる"
         android:id="@+id/button4"
-        android:onClick="finishTutorial"
+        android:onClick="moveThird"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
@@ -32,31 +32,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="チュートリアル"
-        android:id="@+id/textView8"
+        android:text="注意"
+        android:id="@+id/textView2"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="　このアプリは相澤山崎研究室の学生が五月祭のために開発したものです。"
-        android:id="@+id/textView9"
+        android:text="・検索範囲の有名人の数がそこまで多くないので、期待する人が出てこなくてもあきらめてください。"
+        android:id="@+id/textView15"
         android:layout_marginTop="80dp"
-        android:layout_below="@+id/textView8"
-        android:layout_toStartOf="@+id/textView8"
-        android:layout_alignEnd="@+id/button3" />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/banner"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/textView2"
         android:layout_alignParentStart="true" />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignTop="@+id/textView9"
-        android:layout_alignStart="@+id/button3"></FrameLayout>
 </RelativeLayout>
