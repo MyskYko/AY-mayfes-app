@@ -44,24 +44,23 @@ public class preStart extends AppCompatActivity {
             // 撮影成功時の処理
             Bitmap capturedImage = (Bitmap) data.getExtras().get("data");
             //imageView.setImageBitmap(capturedImage);
+            setContentView(R.layout.activity_waiting);
             int[] id = postImage(capturedImage);
             // idが0(計算失敗) -> 再度撮影
             if(id[0] == 0 || id == null){
-                //
-                return;
+                //ミス処理へ
+            }else {
+                /* 結果画像を表示するActivityへ */
+                Intent intent = new Intent(this, result.class);
+                intent.putExtra("resultId", id);
+                startActivity(intent);
+                finish();
             }
-            /* 結果画像を表示するActivityへ */
-            Intent intent = new Intent(this, result.class);
-            intent.putExtra("resultId", id);
-            startActivity(intent);
         }else{
-            //　撮影ミスのとき
+            //ミス処理へ
         }
-    }
-
-    public void move(View view) {
-        Intent intent = new Intent(this, Home.class);
-        startActivity(intent);
+        //ミス処理
+        setContentView(R.layout.activity_retake);
     }
 
     private int[] postImage(Bitmap capturedImage){
@@ -113,4 +112,11 @@ public class preStart extends AppCompatActivity {
         HttpConnector.Request(this, requestInfo);
         return HttpConnector.getReturnedId();
     }
+
+    public void move(View view) {
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

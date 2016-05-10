@@ -37,12 +37,6 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".option_select"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".job"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".genre_choice"
             android:screenOrientation="portrait" />
         <activity

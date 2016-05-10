@@ -30,7 +30,7 @@
         android:onClick="moveTutorial"
         android:id="@+id/button"
         android:layout_below="@+id/textView"
-        android:layout_alignStart="@+id/button2" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -39,24 +39,15 @@
         android:id="@+id/button2"
         android:onClick="moveStart"
         android:layout_below="@+id/button"
-        android:layout_alignStart="@+id/button3" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="もっと"
-        android:id="@+id/button3"
-        android:onClick="moveMore"
-        android:layout_below="@+id/button2"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="id=1002となったとき"
+        android:text="結果表示テスト用"
         android:id="@+id/button13"
         android:onClick="moveResult"
-        android:layout_below="@+id/button3"
-        android:layout_alignStart="@+id/button3" />
+        android:layout_below="@+id/button2"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

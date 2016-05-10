@@ -51,5 +51,6 @@ public class genre_choice extends AppCompatActivity {
         intent.putExtra("resultId", resultId);
         intent.putExtra("category",category);
         startActivity(intent);
+        finish();
     }
 }

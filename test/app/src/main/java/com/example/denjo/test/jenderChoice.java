@@ -14,16 +14,19 @@ public class jenderChoice extends AppCompatActivity {
         Intent i = getIntent();
         resultId = i.getIntArrayExtra("resultId");
     }
+
     public void men(View view){
         Intent intent = new Intent(this, result.class);
         intent.putExtra("resultId", resultId);
         intent.putExtra("category",9);
         startActivity(intent);
+        finish();
     }
     public void women(View view){
         Intent intent = new Intent(this, result.class);
         intent.putExtra("resultId", resultId);
         intent.putExtra("category",10);
         startActivity(intent);
+        finish();
     }
 }

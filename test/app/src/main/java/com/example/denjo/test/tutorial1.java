@@ -24,5 +24,6 @@ public class tutorial1 extends AppCompatActivity {
     public void finishTutorial(View view) {
         Intent intent = new Intent(this, preStart.class);
         startActivity(intent);
+        finish();
     }
 }

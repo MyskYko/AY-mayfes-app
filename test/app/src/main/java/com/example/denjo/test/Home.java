@@ -16,15 +16,12 @@ public class Home extends AppCompatActivity {
     public void moveTutorial(View view) {
         Intent intent = new Intent(this, tutorial1.class);
         startActivity(intent);
+        finish();
     }
-
     public void moveStart(View view) {
         Intent intent = new Intent(this, preStart.class);
         startActivity(intent);
-    }
-    public void moveMore(View view) {
-        Intent intent = new Intent(this, more.class);
-        startActivity(intent);
+        finish();
     }
     public void moveResult(View view) {
         //semiのなかみは{全体,男その他,男act,男art,男show,女その他,女act,女art,女show,男全体,女全体}を想定してます。
@@ -32,5 +29,6 @@ public class Home extends AppCompatActivity {
         Intent intent = new Intent(this, result.class);
         intent.putExtra("resultId", semiResult);
         startActivity(intent);
+        finish();
     }
 }
