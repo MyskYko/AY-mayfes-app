@@ -16,6 +16,7 @@
         android:id="@+id/button3"
         android:onClick="finishTutorial"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/button_pink_customize"
         android:layout_centerHorizontal="true" />
 
     <TextView

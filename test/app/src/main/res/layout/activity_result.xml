@@ -36,12 +36,14 @@
         android:id="@+id/button14"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:background="@drawable/button_green"
         android:onClick="moveOption" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="おわる"
+        android:background="@drawable/button_back"
         android:id="@+id/button15"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"

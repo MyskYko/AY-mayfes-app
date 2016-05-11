@@ -70,6 +70,7 @@
         android:text="さつえい"
         android:id="@+id/button5"
         android:onClick="onClickCameraButton"
+        android:background="@drawable/button_pink_customize"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
