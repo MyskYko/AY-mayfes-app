@@ -16,17 +16,7 @@
         android:id="@+id/button3"
         android:onClick="moveFourth"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="もどる"
-        android:id="@+id/button4"
-        android:onClick="moveSecond"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,46 +28,45 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="　検索範囲を絞ることができるようにしました。男女別、職業別の似ている有名人を調べられます。"
         android:id="@+id/textView3"
-        android:layout_marginTop="80dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true" />
+        android:layout_marginTop="150dp"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:id="@+id/imageView7"
         android:scaleType="centerInside"
         android:src="@drawable/t_boygirl"
         android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
-
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:id="@+id/imageView8"
-        android:src="@drawable/t_actor"
-        android:layout_below="@+id/imageView10"
-        android:layout_toEndOf="@+id/imageView9" />
+        android:layout_alignStart="@+id/textView3" />
 
     <ImageView
         android:layout_width="150dp"
-        android:layout_height="80dp"
-        android:id="@+id/imageView9"
-        android:src="@drawable/t_artist"
-        android:layout_below="@+id/imageView8"
-        android:layout_alignEnd="@+id/textView2" />
+        android:layout_height="150dp"
+        android:id="@+id/imageView8"
+        android:src="@drawable/t_actor"
+        android:layout_below="@+id/imageView7"
+        android:layout_alignStart="@+id/imageView10" />
 
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:id="@+id/imageView9"
+        android:src="@drawable/t_artist"
+        android:layout_below="@+id/imageView7"
+        android:layout_alignStart="@+id/imageView7" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:id="@+id/imageView10"
         android:src="@drawable/t_showman"
         android:layout_alignTop="@+id/imageView7"
-        android:layout_toStartOf="@+id/imageView8" />
+        android:layout_alignEnd="@+id/textView3" />
 
 </RelativeLayout>

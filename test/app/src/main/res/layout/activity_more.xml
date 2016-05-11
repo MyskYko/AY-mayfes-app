@@ -39,19 +39,29 @@
         android:layout_alignParentEnd="true">
 
     <ImageView
-        android:layout_weight="1"
-        android:layout_height="300dp"
+        android:layout_weight="0.5"
+        android:layout_height="200dp"
         android:layout_margin="10dp"
         android:id="@+id/imageView"
-        android:src="@drawable/jender"
+        android:src="@drawable/m_man"
+        android:layout_gravity="center"
         android:layout_width="wrap_content" />
 
-    <ImageView
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:id="@+id/imageView15"
+            android:src="@drawable/m_girl"
+            android:layout_gravity="center"
+            android:layout_weight="0.5" />
+
+        <ImageView
         android:layout_weight="1"
         android:layout_height="300dp"
         android:layout_margin="10dp"
         android:id="@+id/imageView2"
-        android:src="@drawable/comedian"
+        android:src="@drawable/m_show"
+            android:layout_gravity="center"
         android:layout_width="wrap_content" />
     </LinearLayout>
 
@@ -62,6 +72,24 @@
         android:text="おまけ"
         android:id="@+id/textView18"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="　ここでは検索する有名人の範囲を制限することができます。"
+        android:id="@+id/textView4"
+        android:layout_marginTop="150dp"
+        android:layout_alignStart="@+id/jender" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="おわる"
+        android:id="@+id/button4"
+        android:onClick="moveTitle"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

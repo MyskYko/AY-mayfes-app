@@ -20,10 +20,14 @@ public class more extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
     public void moveGenre(View view) {
         Intent intent = new Intent(this, genre_choice.class);
         intent.putExtra("resultId", resultId);
+        startActivity(intent);
+        finish();
+    }
+    public void moveTitle(View view) {
+        Intent intent = new Intent(this, Home.class);
         startActivity(intent);
         finish();
     }

@@ -16,17 +16,7 @@
         android:id="@+id/button3"
         android:onClick="moveSecond"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="やめる"
-        android:id="@+id/button4"
-        android:onClick="finishTutorial"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,25 +28,19 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="　このアプリは相澤山崎研究室の学生が五月祭のために開発したものです。"
         android:id="@+id/textView9"
-        android:layout_marginTop="80dp"
-        android:layout_below="@+id/textView8"
-        android:layout_toStartOf="@+id/textView8"
-        android:layout_alignEnd="@+id/button3" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/banner"
         android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:id="@+id/imageView14" />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignTop="@+id/textView9"
-        android:layout_alignStart="@+id/button3"></FrameLayout>
 </RelativeLayout>

@@ -16,17 +16,7 @@
         android:id="@+id/button3"
         android:onClick="moveThird"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="もどる"
-        android:id="@+id/button4"
-        android:onClick="moveFirst"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,18 +28,18 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="　顔写真を撮ると、顔が似ている有名人を表示します。"
         android:id="@+id/textView11"
-        android:layout_marginTop="80dp"
-        android:layout_below="@+id/textView10"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginTop="150dp"
+        android:layout_centerHorizontal="true"
+        />
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_weight="1"
         android:src="@drawable/t_question"
         android:scaleType="centerInside"
@@ -57,8 +47,8 @@
         android:layout_alignTop="@+id/imageView6"
         android:layout_toEndOf="@+id/imageView6" />
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_weight="1"
         android:src="@drawable/t_model"
         android:id="@+id/imageView3"
@@ -67,8 +57,8 @@
         android:layout_toStartOf="@+id/imageView6" />
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_weight="1"
         android:src="@drawable/t_right"
         android:id="@+id/imageView6"
