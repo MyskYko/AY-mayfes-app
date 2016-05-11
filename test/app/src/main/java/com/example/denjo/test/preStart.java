@@ -27,18 +27,6 @@ public class preStart extends AppCompatActivity {
 
     Globals globals;
 
-    public int[] getReturnedId(){
-        // 要素数チェック
-        int[] id = new int[11];
-        int it = 0;/*
-        StringTokenizer stringTokenizer = new StringTokenizer(globals.returnedBody, ",");
-        while(stringTokenizer.hasMoreTokens()) {
-            id[it] = new Integer(stringTokenizer.nextToken()).intValue();
-            System.out.println(id[it]);
-        }*/
-        return id;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         globals = (Globals) this.getApplication();
@@ -57,10 +45,8 @@ public class preStart extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             // 撮影成功時の処理
             Bitmap capturedImage = (Bitmap) data.getExtras().get("data");
-            //imageView.setImageBitmap(capturedImage);
             //setContentView(R.layout.activity_waiting);
             postImage(capturedImage);
-            // idが0(計算失敗) -> 再度撮影
         }
 
     }
@@ -78,7 +64,6 @@ public class preStart extends AppCompatActivity {
 
         HttpConnector.RequestInfo requestInfo = new HttpConnector.RequestInfo();
 
-        //requestInfo.url = "http://yahoo.co.jp";
         requestInfo.url = "http://52.69.77.43/result";
         System.out.println("try access to: " + requestInfo.url);
 
@@ -95,20 +80,20 @@ public class preStart extends AppCompatActivity {
                     while(iter.hasNext()) {
                         String key = iter.next();
                         resultId[Integer.parseInt(key)] = jsonObject.getInt(key);
-                        //Log.d("response",response);
                     }
-
                 } catch (JSONException e){
                     e.printStackTrace();
                     return;
                 }
-
-                Intent intent = new Intent(context, result.class);
-                intent.putExtra("resultId", resultId);
-                startActivity(intent);
-                finish();
-
-                /*  */
+                if(resultId[0] == 0){
+                    // 顔認識ミス処理
+                    setContentView(R.layout.activity_retake);
+                }else {
+                    Intent intent = new Intent(context, result.class);
+                    intent.putExtra("resultId", resultId);
+                    startActivity(intent);
+                    finish();
+                }
             }
         };
         HttpConnector.Request(this, requestInfo, globals);

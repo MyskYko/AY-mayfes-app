@@ -176,24 +176,6 @@ public class HttpConnector {
                         System.out.println(response.getStatusLine().getStatusCode());
                         switch (response.getStatusLine().getStatusCode()){
                             case HttpStatus.SC_OK:
-
-                            /*
-                                if(response.getEntity().getContentLength() > 0){
-                                    StringBuilder stringBuilder = new StringBuilder();
-                                    try{
-                                        BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()), 65728);
-                                        String line = null;
-
-                                        while((line = reader.readLine()) != null){
-                                            stringBuilder.append(line);
-                                        }
-                                    } catch (IOException e){
-                                        e.printStackTrace();
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                    System.out.println(stringBuilder.toString());
-                                    */
                                 str = EntityUtils.toString(response.getEntity());
                                     return str;
                             case HttpStatus.SC_NOT_FOUND:
