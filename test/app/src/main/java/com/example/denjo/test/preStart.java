@@ -7,27 +7,41 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.denjo.test.utils.AsyncCallback;
+import com.example.denjo.test.utils.Globals;
 import com.example.denjo.test.utils.HttpConnector;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
+import java.util.Iterator;
 
 public class preStart extends AppCompatActivity {
     ImageView imageView;
 
+    Globals globals;
+
+    public int[] getReturnedId(){
+        // 要素数チェック
+        int[] id = new int[11];
+        int it = 0;/*
+        StringTokenizer stringTokenizer = new StringTokenizer(globals.returnedBody, ",");
+        while(stringTokenizer.hasMoreTokens()) {
+            id[it] = new Integer(stringTokenizer.nextToken()).intValue();
+            System.out.println(id[it]);
+        }*/
+        return id;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        globals = (Globals) this.getApplication();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_start);
         imageView = (ImageView) findViewById(R.id.imageView);
@@ -44,26 +58,14 @@ public class preStart extends AppCompatActivity {
             // 撮影成功時の処理
             Bitmap capturedImage = (Bitmap) data.getExtras().get("data");
             //imageView.setImageBitmap(capturedImage);
-            setContentView(R.layout.activity_waiting);
-            int[] id = postImage(capturedImage);
+            //setContentView(R.layout.activity_waiting);
+            postImage(capturedImage);
             // idが0(計算失敗) -> 再度撮影
-            if(id[0] == 0 || id == null){
-                //ミス処理へ
-            }else {
-                /* 結果画像を表示するActivityへ */
-                Intent intent = new Intent(this, result.class);
-                intent.putExtra("resultId", id);
-                startActivity(intent);
-                finish();
-            }
-        }else{
-            //ミス処理へ
         }
-        //ミス処理
-        setContentView(R.layout.activity_retake);
+
     }
 
-    private int[] postImage(Bitmap capturedImage){
+    private void postImage(Bitmap capturedImage){
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         if(!HttpConnector.isConnected(connectivityManager)){
@@ -71,46 +73,45 @@ public class preStart extends AppCompatActivity {
                     .setMessage("インターネット接続できません")
                     .setPositiveButton("OK", null)
                     .show();
-            return null;
+            return;
         }
 
         HttpConnector.RequestInfo requestInfo = new HttpConnector.RequestInfo();
 
-        requestInfo.url = "http://yahoo.co.jp";
-        //requestInfo.url = "http://52.193.222.201/result";
+        //requestInfo.url = "http://yahoo.co.jp";
+        requestInfo.url = "http://52.69.77.43/result";
         System.out.println("try access to: " + requestInfo.url);
 
         requestInfo.params.add(new HttpConnector.Param(HttpConnector.Param.TYPE_IMAGE, "key1", "value1", capturedImage));
         requestInfo.asyncCallBack = new AsyncCallback() {
             @Override
-            public void onPostExecute(InputStream responseIS) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(responseIS));
-                StringBuilder buf = new StringBuilder();
-                String line;
-                try{
-                    while((line = reader.readLine()) != null){
-                        buf.append(line);
-                    }
-                } catch (IOException e){
-                    e.printStackTrace();
-                    return;
-                }
-                String responseStr = buf.toString();
-
+            public void onPostExecute(Context context,String response) {
                 JSONObject jsonObject = null;
+                int[] resultId = new int[11];
                 try{
-                    jsonObject = new JSONObject(responseStr);
-                    /* ! */
+                    jsonObject = new JSONObject(response);
+                    System.out.println(response);
+                    Iterator<String> iter = jsonObject.keys();
+                    while(iter.hasNext()) {
+                        String key = iter.next();
+                        resultId[Integer.parseInt(key)] = jsonObject.getInt(key);
+                        //Log.d("response",response);
+                    }
+
                 } catch (JSONException e){
                     e.printStackTrace();
                     return;
                 }
 
+                Intent intent = new Intent(context, result.class);
+                intent.putExtra("resultId", resultId);
+                startActivity(intent);
+                finish();
+
                 /*  */
             }
         };
-        HttpConnector.Request(this, requestInfo);
-        return HttpConnector.getReturnedId();
+        HttpConnector.Request(this, requestInfo, globals);
     }
 
     public void move(View view) {

@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.ContactsContract;
 import android.renderscript.ScriptGroup;
+import android.util.Log;
 
 import com.example.denjo.test.R;
 
@@ -51,37 +52,7 @@ import java.util.StringTokenizer;
 
 public class HttpConnector {
 
-    /* serverからの返却 */
-    private static InputStream returnedEntity = null;
-
-    public static int[] getReturnedId(){
-        if(returnedEntity != null){
-            StringBuilder stringBuilder = new StringBuilder();
-            try{
-                BufferedReader reader = new BufferedReader(new InputStreamReader(returnedEntity), 65728);
-                String line = null;
-
-                while((line = reader.readLine()) != null){
-                    stringBuilder.append(line);
-                }
-            } catch (IOException e){
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            System.out.println("result: " + stringBuilder.toString());
-
-            // 要素数チェック
-            int[] id = new int[11];
-            int it = 0;
-            StringTokenizer stringTokenizer = new StringTokenizer(stringBuilder.toString(), ",");
-            while(stringTokenizer.hasMoreTokens()){
-                id[it] = new Integer(stringTokenizer.nextToken()).intValue();
-            }
-            return id;
-        }
-        return null;
-    }
+    Globals globalshp;
 
     /* ネットワーク接続有無 */
     public static boolean isConnected(ConnectivityManager manager){
@@ -119,10 +90,10 @@ public class HttpConnector {
     }
 
     /* リクエスト呼び出しクラス */
-    public static  void Request(Context context, RequestInfo requestInfo){
-        AsyncHttpRequest asyncHttpRequest = new AsyncHttpRequest(context);
+    public static  void Request(Context context, RequestInfo requestInfo, Globals globals){
+        AsyncHttpRequest asyncHttpRequest = new AsyncHttpRequest(context, globals,requestInfo.asyncCallBack);
         asyncHttpRequest.url = requestInfo.url;
-        if(requestInfo.url != null){
+        if(requestInfo.url != null) {
             asyncHttpRequest.params.addAll(requestInfo.params);
         }
 
@@ -131,18 +102,19 @@ public class HttpConnector {
     }
 
     /* リクエスト実行本体 */
-    private static class AsyncHttpRequest extends AsyncTask<Void, Void, InputStream>{
+    private static class AsyncHttpRequest extends AsyncTask<Void, Void, String>{
         private Context context = null;
         private String url = null;
         private List<Param> params = new ArrayList<Param>();
         private AsyncCallback asyncCallback = null;
         private ProgressDialog progressDialog;
+        private Globals globals;
+        private String str;
 
-        private Resources res;
-
-        public AsyncHttpRequest(Context context){
+        public AsyncHttpRequest(Context context, Globals globals, AsyncCallback asyncCallback){
             this.context = context;
-            res = context.getResources();
+            this.globals = globals;
+            this.asyncCallback = asyncCallback;
         }
 
         @Override
@@ -154,7 +126,7 @@ public class HttpConnector {
         }
 
         @Override
-        protected InputStream doInBackground(Void... params){
+        protected String doInBackground(Void... params){
             URI uri = null;
             try {
                 uri = new URI(url);
@@ -197,14 +169,15 @@ public class HttpConnector {
 
             HttpClient httpClient = new DefaultHttpClient();
             try{
-                httpClient.execute(request, new ResponseHandler<InputStream>() {
+                httpClient.execute(request, new ResponseHandler<String>() {
                     @Override
-                    public InputStream handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
+                    public String handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
                         System.out.print("HTTP Status Code:");
                         System.out.println(response.getStatusLine().getStatusCode());
                         switch (response.getStatusLine().getStatusCode()){
                             case HttpStatus.SC_OK:
-                                /*
+
+                            /*
                                 if(response.getEntity().getContentLength() > 0){
                                     StringBuilder stringBuilder = new StringBuilder();
                                     try{
@@ -219,13 +192,10 @@ public class HttpConnector {
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
-                                    System.out.println("result: " + stringBuilder.toString());
-                                }
-                                */
-                                //return new BufferedHttpEntity(response.getEntity()).getContent();
-                                if(response.getEntity().getContentLength() > 0) {
-                                    returnedEntity = new BufferedHttpEntity(response.getEntity()).getContent();
-                                }
+                                    System.out.println(stringBuilder.toString());
+                                    */
+                                str = EntityUtils.toString(response.getEntity());
+                                    return str;
                             case HttpStatus.SC_NOT_FOUND:
                                 throw new RuntimeException("httpClient.execute SC_NOT_FOUND");
                             default:
@@ -246,20 +216,20 @@ public class HttpConnector {
                     }
                 }
             }
-            return null;
+            return str;
         }
 
         @Override
-        protected void onPostExecute(InputStream responseIS){
+        protected void onPostExecute(String response) {
+
             // プロセスダイアログ表示終了
-            if (this.progressDialog != null && this.progressDialog.isShowing()){
+            if (this.progressDialog != null && this.progressDialog.isShowing()) {
                 this.progressDialog.dismiss();
             }
-
             // 起動元をコールバック
-            if (this.asyncCallback != null && responseIS != null){
-                this.asyncCallback.onPostExecute(responseIS);
-            }
+           if (this.asyncCallback != null) {
+                this.asyncCallback.onPostExecute(context,response);
+           }
         }
     }
 }
