@@ -40,7 +40,7 @@ public class genre_choice extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 category = position+2;
-                if(category >= 5) category += 1;
+                if(category >= 5) category += 2;
                 moveResult(view);
             }
         });

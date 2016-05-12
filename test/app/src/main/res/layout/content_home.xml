@@ -40,6 +40,7 @@
         android:id="@+id/button2"
         android:onClick="moveStart"
         android:layout_below="@+id/button"
+        android:layout_marginTop="45dp"
         android:background="@drawable/button_pink_customize"
         android:layout_centerHorizontal="true" />
 
@@ -49,6 +50,7 @@
         android:text="結果表示テスト用"
         android:id="@+id/button13"
         android:onClick="moveResult"
+        android:layout_marginTop="45dp"
         android:layout_below="@+id/button2"
         android:layout_centerHorizontal="true" />
 

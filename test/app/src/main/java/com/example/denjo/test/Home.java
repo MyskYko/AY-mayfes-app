@@ -24,8 +24,8 @@ public class Home extends AppCompatActivity {
         finish();
     }
     public void moveResult(View view) {
-        //semiのなかみは{全体,男その他,男act,男art,男show,女その他,女act,女art,女show,男全体,女全体}を想定してます。
-        int semiResult[] = {1002,1003,1101,1201,1301,2001,2101,2201,2301,1004,2002};
+        //semiのなかみは{全体,男全体,男act,男art,男show,男その他,女全体,女act,女art,女show,女その他}を想定してます。
+        int semiResult[] = {1001,1002,1101,1201,1301,1003,2001,2101,2201,2301,2002};
         Intent intent = new Intent(this, result.class);
         intent.putExtra("resultId", semiResult);
         startActivity(intent);
