@@ -48,8 +48,6 @@ public class preStart extends AppCompatActivity {
             //setContentView(R.layout.activity_waiting);
             postImage(capturedImage);
         }
-        //撮影失敗時
-        setContentView(R.layout.activity_retake);
     }
 
     private void postImage(Bitmap capturedImage){
