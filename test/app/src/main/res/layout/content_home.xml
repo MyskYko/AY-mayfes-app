@@ -44,7 +44,7 @@
         android:background="@drawable/button_pink_customize"
         android:layout_centerHorizontal="true" />
 
-    <Button
+   <!-- <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="結果表示テスト用"
@@ -52,6 +52,5 @@
         android:onClick="moveResult"
         android:layout_marginTop="45dp"
         android:layout_below="@+id/button2"
-        android:layout_centerHorizontal="true" />
-
+        android:layout_centerHorizontal="true" /> -->
 </RelativeLayout>

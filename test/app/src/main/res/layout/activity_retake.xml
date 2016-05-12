@@ -27,6 +27,7 @@
         android:id="@+id/button7"
         android:onClick="move"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/button_back"
         android:layout_centerHorizontal="true" />
 
     <ImageView
