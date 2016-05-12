@@ -65,7 +65,7 @@ public class preStart extends AppCompatActivity {
 
         HttpConnector.RequestInfo requestInfo = new HttpConnector.RequestInfo();
 
-        requestInfo.url = "http://52.69.77.43/result";
+        requestInfo.url = "http://52.196.89.113/result";
         System.out.println("try access to: " + requestInfo.url);
 
         requestInfo.params.add(new HttpConnector.Param(HttpConnector.Param.TYPE_IMAGE, "key1", "value1", capturedImage));

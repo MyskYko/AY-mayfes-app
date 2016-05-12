@@ -26,7 +26,7 @@ public class jenderChoice extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0) category = 1;
-                else category = 6;
+                else category = 2;
                 moveResult(view);
             }
         });
